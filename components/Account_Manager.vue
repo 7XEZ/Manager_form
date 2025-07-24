@@ -38,13 +38,13 @@
 import { onMounted } from 'vue';
 import { useAccountsStore, subscribeStorePersistence } from '../stores/accounts';
 import AccountItem from './Account_item.vue';
-// Импорт иконок Element Plus
+
 import { Plus as ElIconPlus, QuestionFilled } from '@element-plus/icons-vue';
 
 
 const accountsStore = useAccountsStore();
 
-// Подписка на сохранение состояния в localStorage (из вашего accounts.ts)
+
 subscribeStorePersistence(accountsStore);
 
 onMounted(() => {
@@ -66,49 +66,45 @@ function removeAccount(id: number) {
 
 <style scoped>
 .account-manager-container {
-  padding: 20px; /* Отступ от краев main */
+  padding: 20px; 
 }
 
 .header-with-button {
   display: flex;
   align-items: center;
-  gap: 10px; /* Расстояние между заголовком и кнопкой */
-  margin-bottom: 20px; /* Отступ под заголовком и кнопкой */
+  gap: 10px; 
+  margin-bottom: 20px; 
 }
 
 h2 {
-  margin: 0; /* Убираем стандартные отступы у h2 */
-  font-size: 28px; /* Чуть крупнее, чем стандартный h2 */
-  font-weight: normal; /* По изображению кажется, что не жирный */
+  margin: 0; 
+  font-size: 28px; 
+  font-weight: normal; 
 }
 
 .add-account-button {
-  /* Возможно, нужно увеличить размер, если стандартный маленький */
+ 
   width: 36px;
   height: 36px;
   font-size: 20px;
 }
 
 .info-alert {
-  margin-bottom: 20px; /* Отступ под подсказкой */
-  border-left: 5px solid var(--el-color-info); /* Более выразительная левая граница */
-  background-color: var(--el-color-info-light-9); /* Легкий фон */
+  margin-bottom: 20px; 
+  border-left: 5px solid var(--el-color-info);
+  background-color: var(--el-color-info-light-9); 
   color: var(--el-color-info);
 }
 
-/* Переопределение стиля иконки в El-Alert для соответствия изображению */
+
 .info-alert :deep(.el-alert__icon) {
-    font-size: 20px; /* Размер иконки */
-    width: 20px; /* Ширина контейнера иконки */
-    margin-right: 8px; /* Отступ справа от иконки */
+    font-size: 20px; 
+    width: 20px;
+    margin-right: 8px; 
 }
 
 .info-alert :deep(.el-alert__content) {
   font-size: 14px;
 }
 
-.account-items-list {
-  /* Здесь могут быть дополнительные стили для размещения списка AccountItem,
-     например, gap, если они не будут растягиваться */
-}
 </style>
