@@ -52,7 +52,7 @@
 <script lang="ts" setup>
 import { reactive, watch, computed } from 'vue';
 import type { Account, LabelItem, RecordType } from '../stores/accounts';
-// Импорт иконки Element Plus
+
 import { Delete as ElIconDelete } from '@element-plus/icons-vue';
 
 
@@ -123,40 +123,38 @@ function onBlur(field: 'login' | 'password' | 'labelInput') {
 function onRecordTypeChange() {
   if (form.recordType === 'LDAP') {
     form.password = '';
-    onBlur('password'); // Обновить родителя после изменения типа
+    onBlur('password'); 
   }
-  // Дополнительно вызываем onBlur для обновления данных в Pinia Store
-  onBlur('recordType' as any); // Принудительно передаем, хотя такого поля нет в списке onBlur
+  
+  onBlur('recordType' as any); 
 }
 
-// Watcher для синхронизации внешних изменений (если account пропс меняется)
+
 watch(() => props.account, (newVal) => {
   form.labelInput = labelsToString(newVal.labels);
   form.recordType = newVal.recordType;
   form.login = newVal.login;
   form.password = newVal.password || '';
-}, { deep: true }); // Глубокое отслеживание, если account объект может мутировать
+}, { deep: true });
 
 </script>
 
 <style scoped>
 .account-item {
   display: flex;
-  align-items: center; /* Выравнивание элементов по центру вертикали */
-  gap: 10px; /* Расстояние между элементами в строке */
-  margin-bottom: 10px; /* Отступ между строками */
-  padding: 8px 0; /* Небольшой вертикальный отступ */
-}
+  align-items: center;
+  gap: 10px; 
+  margin-bottom: 10px; 
+  padding: 8px 0;
 
-/* Элементы, которые выглядят как колонки */
+
 .label-input,
 .record-type-select,
 .login-input,
 .password-input {
-  flex-basis: 150px; /* Базовая ширина для каждого поля */
-  flex-grow: 1; /* Разрешить полям растягиваться */
-  max-width: 250px; /* Максимальная ширина, чтобы не были слишком широкими */
-}
+  flex-basis: 150px; 
+  flex-grow: 1;
+  max-width: 250px; 
 
 /* Специфическая ширина для выпадающего списка */
 .record-type-select {
